@@ -40,6 +40,7 @@ GameManager.prototype.setup = function () {
     this.grid = new Grid(this.size);
 
     this.score = 0;
+    this.highestTile = 5;
     this.over = false;
     this.won = false;
     this.keepPlaying = false;
@@ -76,6 +77,7 @@ GameManager.prototype.actuate = function () {
 
     this.actuator.actuate(this.grid, {
         score: this.score,
+        highest: this.highestTile,
         over: this.over,
         won: this.won,
         bestScore: this.scoreManager.get(),
@@ -177,6 +179,8 @@ GameManager.prototype.move = function (direction) {
                     // Update the score
                     self.score += merged.value;
 
+                    if (merged.value > self.highestTile) self.highestTile=merged.value;
+
                     // The mighty 20 Euro tile
                     if (merged.value === 2000) self.won = true;
                 } else if (next && next.value === tile.value && !next.mergedFrom && next.value!=2 && next.value!=20 && next.value!=200 && next.value!=2000 && next.value!=20000 && next.value!=50000) {
@@ -193,6 +197,8 @@ GameManager.prototype.move = function (direction) {
 
                     // Update the score
                     self.score += merged.value;
+
+                    if (merged.value > self.highestTile) self.highestTile=merged.value;
 
                     // The mighty 20 Euro tile
                     if (merged.value === 2000) self.won = true;

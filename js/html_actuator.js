@@ -6,6 +6,7 @@ function HTMLActuator() {
   this.sharingContainer = document.querySelector(".score-sharing");
 
   this.score = 0;
+  this.highestTile = 1;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -24,6 +25,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
+    self.highestTile = metadata.highest;
 
     if (metadata.terminated) {
       if (metadata.over) {
@@ -211,7 +213,7 @@ function makeid()
       var userScoreRef = scoreListRef.child(name);
 
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-      userScoreRef.setWithPriority({ name:name, score:newScore, won:won }, newScore);
+      userScoreRef.setWithPriority({ name:name, score:newScore, won:won, highest:this.highestTile }, newScore);
 
       // Track the highest score using a transaction.  A transaction guarantees that the code inside the block is
       // executed on the latest data from the server, so transactions should be used if you have multiple
