@@ -141,6 +141,17 @@ HTMLActuator.prototype.message = function (won) {
   var rootRef = new Firebase('https://20-euros.firebaseio.com');
   var scoreListRef = rootRef.child("scoreList");
   var highestScoreRef = rootRef.child("highestScore");
+  var RefPlays = rootRef.child("plays");
+  var Ref50 = rootRef.child("reached_50c");
+  var Ref100 = rootRef.child("reached_1e");
+  var Ref200 = rootRef.child("reached_2e");
+  var Ref500 = rootRef.child("reached_5e");
+  var Ref1000 = rootRef.child("reached_10e");
+  var Ref2000 = rootRef.child("reached_20e");
+  var Ref5000 = rootRef.child("reached_50e");
+  var Ref10000 = rootRef.child("reached_100e");
+  var Ref20000 = rootRef.child("reached_200e");
+  var Ref50000 = rootRef.child("reached_500e");
 
   // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
   var htmlForPath = {};
@@ -215,18 +226,69 @@ function makeid()
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
       userScoreRef.setWithPriority({ name:name, score:newScore, highest:this.highestTile }, newScore);
 
-      // Track the highest score using a transaction.  A transaction guarantees that the code inside the block is
-      // executed on the latest data from the server, so transactions should be used if you have multiple
-      // clients writing to the same data and you want to avoid conflicting changes.
-      highestScoreRef.transaction(function (currentHighestScore) {
-        if (currentHighestScore === null || newScore > currentHighestScore) {
-          // The return value of this function gets saved to the server as the new highest score.
-          return newScore;
-        }
-        // if we return with no arguments, it cancels the transaction.
-        return;
-      });
+    RefPlays.transaction(function(current_value) {
+      return current_value + 1;
+    });
 
+   if (this.highestTile >= 50){
+     Ref50.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 100){
+     Ref100.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 200){
+     Ref200.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 500){
+     Ref500.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 1000){
+     Ref1000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 2000){
+     Ref2000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 5000){
+     Ref5000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 10000){
+     Ref10000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 20000){
+     Ref20000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
+
+if (this.highestTile >= 50000){
+     Ref50000.transaction(function(current_value) {
+      return current_value + 1;
+    });
+  }
 
   // Add a callback to the highest score in Firebase so we can update the GUI any time it changes.
   highestScoreRef.on('value', function (newHighestScore) {
