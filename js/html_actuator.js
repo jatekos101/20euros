@@ -226,6 +226,18 @@ function makeid()
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
       userScoreRef.setWithPriority({ name:name, score:newScore, highest:this.highestTile }, newScore);
 
+// Track the highest score using a transaction.  A transaction guarantees that the code inside the block is
+      // executed on the latest data from the server, so transactions should be used if you have multiple
+      // clients writing to the same data and you want to avoid conflicting changes.
+      highestScoreRef.transaction(function (currentHighestScore) {
+        if (currentHighestScore === null || newScore > currentHighestScore) {
+          // The return value of this function gets saved to the server as the new highest score.
+          return newScore;
+        }
+        // if we return with no arguments, it cancels the transaction.
+        return;
+      });
+
     RefPlays.transaction(function(current_value) {
       return current_value + 1;
     });
