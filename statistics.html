@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en" manifest="cache.appcache">
+<head>
+  <meta charset="utf-8">
+  <title>20 Euros Statistics</title>
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta property="og:title" content="20euro game"/>
+  <meta property="og:site_name" content="20euro game"/>
+  <meta property="og:description" content="Join the coins and get the 20 Euro tile!"/>
+  <meta property="og:image" content="http://gabrielecirulli.github.io/2048/meta/og_image.png"/>
+  <script src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+
+
+</head>
+<body>
+
+ <script language="JavaScript">
+  var rootRef = new Firebase('https://20-euros.firebaseio.com/');
+   var highestScoreRef = rootRef.child("highestScore");
+  var RefPlays = rootRef.child("plays");
+  var Ref50 = rootRef.child("reached_50c");
+  var Ref100 = rootRef.child("reached_1e");
+  var Ref200 = rootRef.child("reached_2e");
+  var Ref500 = rootRef.child("reached_5e");
+  var Ref1000 = rootRef.child("reached_10e");
+  var Ref2000 = rootRef.child("reached_20e");
+  var Ref5000 = rootRef.child("reached_50e");
+  var Ref10000 = rootRef.child("reached_100e");
+  var Ref20000 = rootRef.child("reached_200e");
+  var Ref50000 = rootRef.child("reached_500e");
+
+ highestScoreRef.on('value', function(newHighestScore) {
+    document.getElementById("highestScoreDiv").innerHTML=newHighestScore.val();
+  });
+ RefPlays.on('value', function(newPlays) {
+    document.getElementById("DivPlays").innerHTML=newPlays.val();
+  });
+
+Ref50.on('value', function(newPlays) {
+    document.getElementById("Div50").innerHTML=newPlays.val();
+  });
+Ref100.on('value', function(newPlays) {
+    document.getElementById("Div100").innerHTML=newPlays.val();
+  });
+Ref200.on('value', function(newPlays) {
+    document.getElementById("Div200").innerHTML=newPlays.val();
+  });
+Ref500.on('value', function(newPlays) {
+    document.getElementById("Div500").innerHTML=newPlays.val();
+  });
+Ref1000.on('value', function(newPlays) {
+    document.getElementById("Div1000").innerHTML=newPlays.val();
+  });
+Ref2000.on('value', function(newPlays) {
+    document.getElementById("Div2000").innerHTML=newPlays.val();
+  });
+Ref5000.on('value', function(newPlays) {
+    document.getElementById("Div5000").innerHTML=newPlays.val();
+  });
+Ref10000.on('value', function(newPlays) {
+    document.getElementById("Div10000").innerHTML=newPlays.val();
+  });
+Ref20000.on('value', function(newPlays) {
+    document.getElementById("Div20000").innerHTML=newPlays.val();
+  });
+Ref50000.on('value', function(newPlays) {
+    document.getElementById("Div50000").innerHTML=newPlays.val();
+  });
+
+ </script>
+
+
+
+
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Statistics</h1>
+    </div>
+    <p class="game-intro">Statistics of my game <a href="http://jatekos101.github.io/20euros">20 Euros</a>.</p>
+
+<hr>
+<p>
+Statistics from 2014-04-06.
+</p>
+
+ Out of the <b><span id="DivPlays"></span></b> plays, <br>
+ <b><span id="Div50"></span></b> reached the 50 cent coin, <br>
+ <b><span id="Div100"></span></b> reached the 1 euro coin, <br>
+ <b><span id="Div200"></span></b> reached the 2 euro coin, <br>
+ <b><span id="Div500"></span></b> reached the 5 euro note, <br>
+ <b><span id="Div1000"></span></b> reached the 10 euro note, <br>
+ and <b><span id="Div2000"></span></b> won the game! <br>
+ </p>
+ <p>
+ The highest score achieved was <b><span id="highestScoreDiv"></span></b>.
+ </p> 
+</div>
+
+<script type="text/javascript">
+var sc_project=9719822; 
+var sc_invisible=1; 
+var sc_security="bccc6417"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9719822/0/bccc6417/1/"
+alt="web analytics"></a></div></noscript>
+
+
+</body>
+</html>
+
