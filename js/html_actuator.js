@@ -224,7 +224,8 @@ function makeid()
       var userScoreRef = scoreListRef.child(name);
 
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-      userScoreRef.setWithPriority({ name:name, score:newScore, highest:this.highestTile }, newScore);
+ if ((newScore <= 500)||(this.highestTile <= 20)||(this.highestTile >= 2000)){
+      userScoreRef.setWithPriority({ name:name, score:newScore, highest:this.highestTile }, newScore);}
 
 // Track the highest score using a transaction.  A transaction guarantees that the code inside the block is
       // executed on the latest data from the server, so transactions should be used if you have multiple
