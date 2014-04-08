@@ -218,9 +218,6 @@ function makeid()
       var name = makeid();
       $("#scoreInput").val("");
 
-      if (name.length === 0)
-        return;
-
       var userScoreRef = scoreListRef.child(name);
 
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
