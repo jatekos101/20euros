@@ -142,27 +142,9 @@ GameManager.prototype.move = function (direction) {
                     next2 = self.grid.cellContent(pos2.next);
                 }
                 // Only one merger per row traversal?
-                 if (next && next2 && !next.mergedFrom && next != next2 && (
-((tile.value==1)&&(next.value==2)&&(next2.value==2))||
-((tile.value==2)&&(next.value==1)&&(next2.value==2))||
-((tile.value==2)&&(next.value==2)&&(next2.value==1))||
-((tile.value==10)&&(next.value==20)&&(next2.value==20))||
-((tile.value==20)&&(next.value==10)&&(next2.value==20))||
-((tile.value==20)&&(next.value==20)&&(next2.value==10))||
-((tile.value==100)&&(next.value==200)&&(next2.value==200))||
-((tile.value==200)&&(next.value==100)&&(next2.value==200))||
-((tile.value==200)&&(next.value==200)&&(next2.value==100))||
-((tile.value==1000)&&(next.value==2000)&&(next2.value==2000))||
-((tile.value==2000)&&(next.value==1000)&&(next2.value==2000))||
-((tile.value==2000)&&(next.value==2000)&&(next2.value==1000))||
-((tile.value==10000)&&(next.value==20000)&&(next2.value==20000))||
-((tile.value==20000)&&(next.value==10000)&&(next2.value==20000))||
-((tile.value==20000)&&(next.value==20000)&&(next2.value==10000))||
-((tile.value==5)&&(next.value==10)&&(next2.value==5))||
-((tile.value==50)&&(next.value==100)&&(next2.value==50))||
-((tile.value==500)&&(next.value==1000)&&(next2.value==500))||
-((tile.value==5000)&&(next.value==10000)&&(next2.value==5000)))) {
-                    var merged = new Tile(pos2.next, tile.value+next.value+next2.value);
+                if (next && next2 && !next.mergedFrom && next != next2 && (((tile.value == 1) && (next.value == 2) && (next2.value == 2)) || ((tile.value == 2) && (next.value == 1) && (next2.value == 2)) || ((tile.value == 2) && (next.value == 2) && (next2.value == 1)) || ((tile.value == 10) && (next.value == 20) && (next2.value == 20)) || ((tile.value == 20) && (next.value == 10) && (next2.value == 20)) || ((tile.value == 20) && (next.value == 20) && (next2.value == 10)) || ((tile.value == 100) && (next.value == 200) && (next2.value == 200)) || ((tile.value == 200) && (next.value == 100) && (next2.value == 200)) || ((tile.value == 200) && (next.value == 200) && (next2.value == 100)) || ((tile.value == 1000) && (next.value == 2000) && (next2.value == 2000)) || ((tile.value == 2000) && (next.value == 1000) && (next2.value == 2000)) || ((tile.value == 2000) && (next.value == 2000) && (next2.value == 1000)) || ((tile.value == 10000) && (next.value == 20000) && (next2.value == 20000)) || ((tile.value == 20000) && (next.value == 10000) && (next2.value == 20000)) || ((tile.value == 20000) && (next.value == 20000) && (next2.value == 10000)) || ((tile.value == 5) && (next.value == 10) && (next2.value == 5)) || ((tile.value == 50) && (next.value == 100) && (next2.value == 50)) || ((tile.value == 500) && (next.value == 1000) && (next2.value == 500)) || ((tile.value == 5000) && (next.value == 10000) && (next2.value == 5000)))) {
+
+                    var merged = new Tile(pos2.next, tile.value + next.value + next2.value);
                     merged.mergedFrom = [next2, next, tile];
                     tile.merged = true;
                     next.merged = true;
@@ -179,11 +161,12 @@ GameManager.prototype.move = function (direction) {
                     // Update the score
                     self.score += merged.value;
 
-                    if (merged.value > self.highestTile) self.highestTile=merged.value;
+                    if (merged.value > self.highestTile) self.highestTile = merged.value;
 
                     // The mighty 20 Euro tile
                     if (merged.value === 2000) self.won = true;
-                } else if (next && next.value === tile.value && !next.mergedFrom && next.value!=2 && next.value!=20 && next.value!=200 && next.value!=2000 && next.value!=20000 && next.value!=50000) {
+                } else if (next && next.value === tile.value && !next.mergedFrom && next.value != 2 && next.value != 20 && next.value != 200 && next.value != 2000 && next.value != 20000 && next.value != 50000) {
+ 
                     var merged = new Tile(positions.next, tile.value * 2);
                     merged.mergedFrom = [tile, next];
                     tile.merged = true;
@@ -198,7 +181,7 @@ GameManager.prototype.move = function (direction) {
                     // Update the score
                     self.score += merged.value;
 
-                    if (merged.value > self.highestTile) self.highestTile=merged.value;
+                    if (merged.value > self.highestTile) self.highestTile = merged.value;
 
                     // The mighty 20 Euro tile
                     if (merged.value === 2000) self.won = true;
@@ -324,31 +307,12 @@ GameManager.prototype.tileMatchesAvailable = function () {
                     }, vector);
                     var next2 = self.grid.cellContent(pos2.next);
                     // Only one merger per row traversal?
-                                    if (next && next2 && next != next2 && (
-((tile.value==1)&&(next.value==2)&&(next2.value==2))||
-((tile.value==2)&&(next.value==1)&&(next2.value==2))||
-((tile.value==2)&&(next.value==2)&&(next2.value==1))||
-((tile.value==10)&&(next.value==20)&&(next2.value==20))||
-((tile.value==20)&&(next.value==10)&&(next2.value==20))||
-((tile.value==20)&&(next.value==20)&&(next2.value==10))||
-((tile.value==100)&&(next.value==200)&&(next2.value==200))||
-((tile.value==200)&&(next.value==100)&&(next2.value==200))||
-((tile.value==200)&&(next.value==200)&&(next2.value==100))||
-((tile.value==1000)&&(next.value==2000)&&(next2.value==2000))||
-((tile.value==2000)&&(next.value==1000)&&(next2.value==2000))||
-((tile.value==2000)&&(next.value==2000)&&(next2.value==1000))||
-((tile.value==10000)&&(next.value==20000)&&(next2.value==20000))||
-((tile.value==20000)&&(next.value==10000)&&(next2.value==20000))||
-((tile.value==20000)&&(next.value==20000)&&(next2.value==10000))||
-((tile.value==5)&&(next.value==10)&&(next2.value==5))||
-((tile.value==50)&&(next.value==100)&&(next2.value==50))||
-((tile.value==500)&&(next.value==1000)&&(next2.value==500))||
-((tile.value==5000)&&(next.value==10000)&&(next2.value==5000)))) {
+                    if (next && next2 && next != next2 && (((tile.value == 1) && (next.value == 2) && (next2.value == 2)) || ((tile.value == 2) && (next.value == 1) && (next2.value == 2)) || ((tile.value == 2) && (next.value == 2) && (next2.value == 1)) || ((tile.value == 10) && (next.value == 20) && (next2.value == 20)) || ((tile.value == 20) && (next.value == 10) && (next2.value == 20)) || ((tile.value == 20) && (next.value == 20) && (next2.value == 10)) || ((tile.value == 100) && (next.value == 200) && (next2.value == 200)) || ((tile.value == 200) && (next.value == 100) && (next2.value == 200)) || ((tile.value == 200) && (next.value == 200) && (next2.value == 100)) || ((tile.value == 1000) && (next.value == 2000) && (next2.value == 2000)) || ((tile.value == 2000) && (next.value == 1000) && (next2.value == 2000)) || ((tile.value == 2000) && (next.value == 2000) && (next2.value == 1000)) || ((tile.value == 10000) && (next.value == 20000) && (next2.value == 20000)) || ((tile.value == 20000) && (next.value == 10000) && (next2.value == 20000)) || ((tile.value == 20000) && (next.value == 20000) && (next2.value == 10000)) || ((tile.value == 5) && (next.value == 10) && (next2.value == 5)) || ((tile.value == 50) && (next.value == 100) && (next2.value == 50)) || ((tile.value == 500) && (next.value == 1000) && (next2.value == 500)) || ((tile.value == 5000) && (next.value == 10000) && (next2.value == 5000)))) {
                         return true;
                     }
-             if (next && next.value === tile.value && next.value!=2 && next.value!=20 && next.value!=200 && next.value!=2000 && next.value!=20000 &&               next.value!=50000) {
-        return true;
-            }
+                    if (next && next.value === tile.value && next.value != 2 && next.value != 20 && next.value != 200 && next.value != 2000 && next.value != 20000 && next.value != 50000) {
+                        return true;
+                    }
 
                 }
             }

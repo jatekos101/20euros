@@ -134,8 +134,6 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You won!" : "No more moves. Game over.";
-  
-   var LEADERBOARD_SIZE = 10;
 
   // Build some firebase references.
   var rootRef = new Firebase('https://20-euros.firebaseio.com');
@@ -194,7 +192,7 @@ function makeid()
 }
 
   // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
-  var scoreListView = scoreListRef.limit(LEADERBOARD_SIZE);
+  var scoreListView = scoreListRef.limit(10);
 
   // Add a callback to handle when a new score is added.
   scoreListView.on('child_added', function (newScoreSnapshot, prevScoreName) {
